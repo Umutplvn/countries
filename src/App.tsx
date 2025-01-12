@@ -33,7 +33,7 @@ function App() {
 
 
     return (
-        <div>
+        <div style={{width:"100vw", height:"100vh", display:"flex", flexWrap:"wrap", justifyContent:"center", gap:"2rem"}}>
             <Loading loading={loading}>
                 {countries.map((country) => {
                     return (
