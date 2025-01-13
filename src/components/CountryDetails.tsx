@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import bgImage from "../assets/world.svg"
-
+import loadingGif from "../assets/bouncing-circles.svg"
 interface CountryType {
   name: {
     common: string;
@@ -72,7 +72,9 @@ const CountryDetails: React.FC = () => {
   }, [cca2]);
 
   if (loading) {
-    return <div style={{width:"100vw", textAlign: 'center', marginTop: '2rem', fontWeight:"500", fontSize:"2rem" }}>Loading...</div>;
+    return <div style={{width:"100vw", textAlign: 'center', marginTop: '10rem', fontWeight:"500", fontSize:"2rem" }}>
+      <img src={loadingGif} alt="" style={{width:"50px"}} />
+    </div>;
   }
 
   if (!country) {

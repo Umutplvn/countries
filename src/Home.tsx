@@ -4,6 +4,7 @@ import { CountryType } from "./types"
 import { useState, useEffect } from "react"
 import CountryCard from './components/CountryCard';
 import bgImage from "../src/assets/world.svg"
+import loadingGif from "./assets/bouncing-circles.svg"
 
 
 function App() {
@@ -76,7 +77,9 @@ function App() {
             />
         </div>
 
-        {filterCountries?.map((country) => {
+        {loading? <div style={{width:"100vw", textAlign: 'center', height:"100vh"}}>
+      <img src={loadingGif} alt="" style={{width:"50px"}} />
+    </div> : filterCountries?.map((country) => {
             return (
                 <CountryCard key={country?.name?.common} country={country} />
             )
