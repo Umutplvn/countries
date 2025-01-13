@@ -8,8 +8,16 @@ import bgImage from "../src/assets/world.svg"
 
 function App() {
 
-    const [countries, setCountries] = useState<CountryType[]>([])
     const [loading, setLoading] = useState<Boolean>(false)
+    const [filterCountries, setFilterCountries] = useState<CountryType[]>([])
+    const [countries, setCountries] = useState<CountryType[]>([])
+    const [search, setSearch] = useState<String>("")
+
+
+    const filterCountryData: () => void = () => {
+        const data = countries?.filter((country) => country?.name?.common.toLowerCase().includes(`${search.toLowerCase()}`))
+        setFilterCountries(data);
+    }
 
 
     const getCountries = async () => {
@@ -17,6 +25,8 @@ function App() {
         try {
             const { data } = await axios<CountryType[]>("https://restcountries.com/v3.1/all")
             setCountries(data)
+            setFilterCountries(data)
+
         } catch (error) {
             console.log(error);
 
@@ -30,6 +40,18 @@ function App() {
     }, [])
 
 
+    const onChangeFilter: (e: React.ChangeEvent<HTMLInputElement>) => void = (e) => {
+        setSearch(e.target.value)
+        filterCountryData()
+    }
+
+
+
+
+    useEffect(() => {
+        filterCountryData()
+    }, [search])
+
 
     return (
         <div style={{
@@ -39,12 +61,15 @@ function App() {
         }}>
 
             <div style={{ width: "100vw", paddingBottom: "3rem", display: "flex", justifyContent: "center" }}>
-                <input type="text" style={{ width: "20rem", borderRadius: "1rem", paddingLeft: "1rem" }} autoFocus placeholder='Search...' />
+                <input type="text" style={{ width: "20rem", height: "2rem", borderRadius: "1rem", paddingLeft: "1rem" }} autoFocus placeholder='Search...'
+                    value={`${search}`}
+                    onChange={(e) => onChangeFilter(e)}
+                />
             </div>
 
-            {countries?.map((country) => {
+            {filterCountries?.map((country) => {
                 return (
-                    <CountryCard key={country?.name?.official} country={country} />
+                    <CountryCard key={country?.name?.common} country={country} />
                 )
             })}
 
