@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CountryType } from '../types';
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
 
 interface ICountryProps {
   country: CountryType;
@@ -20,8 +21,10 @@ const CountryCard: React.FC<ICountryProps> = ({ country }) => {
     setIsLinkVisible(false);
   };
 
+
   return (
-    <Card
+    <Link to={`/country/${country.cca2}`} style={{ textDecoration: 'none' }}>
+       <Card
       style={{
         width: '18rem',
         height: '20rem',
@@ -61,6 +64,8 @@ const CountryCard: React.FC<ICountryProps> = ({ country }) => {
         }}
       />
     </Card>
+</Link>
+ 
   );
 };
 
