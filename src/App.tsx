@@ -3,7 +3,7 @@ import React from 'react';
 import { CountryType } from "./types"
 import { useState, useEffect } from "react"
 import CountryCard from './components/CountryCard';
-
+import bgImage from "../src/assets/world.svg"
 function App() {
 
     const [countries, setCountries] = useState<CountryType[]>([])
@@ -23,8 +23,6 @@ function App() {
         }
     }
 
-
-
     useEffect(() => {
         getCountries()
     }, [])
@@ -32,7 +30,9 @@ function App() {
 
 
     return (
-        <div style={{width:"100vw", height:"100vh", display:"flex", flexWrap:"wrap", justifyContent:"center", gap:"2rem"}}>
+        <div style={{width:"100vw", height:"100vh", display:"flex", flexWrap:"wrap", justifyContent:"center", gap:"2rem", padding:"5rem 2rem 5rem 2rem ", overflow:"scroll", backgroundImage:`url(${bgImage})`,   backgroundPosition: "center", 
+        backgroundRepeat: "no-repeat", 
+        backgroundSize: "contain"}}>
                 {countries.map((country) => {
                     return (
                         <CountryCard key={country.name.official} country={country} />
