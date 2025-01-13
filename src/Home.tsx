@@ -23,7 +23,7 @@ function App() {
 
   const api = axios.create({
     baseURL: "https://restcountries.com/v3.1",
-    timeout: 20000, // 20 saniye zaman aşımı
+    timeout: 20000, 
     headers: {
       "Content-Type": "application/json",
     },
@@ -34,7 +34,7 @@ const getCountries = async () => {
   try {
     const { data } = await api.get<CountryType[]>("/all");
     setCountries(data);
-    setFilterCountries(data); // İlk yüklemede filtrelenmiş veriyi de güncelleyin
+    setFilterCountries(data);
   } catch (error) {
     console.error("API Hatası:", error);
   } finally {
@@ -95,8 +95,36 @@ useEffect(() => {
             <img src={loadingGif} alt="" style={{ width: "50px" }} />
           </div>
         ) : (
-          filterCountries?.map((country) => <CountryCard key={country?.name?.common} country={country} />)
-        )}
+
+<>
+{filterCountries?.length > 0 ? (
+  filterCountries.map((country) => (
+    <CountryCard key={country?.name?.common} country={country} />
+  ))
+) : (
+  <div style={{ width: "100vw", textAlign: "center", height: "100vh", display: "flex", flexDirection: "column",alignItems: "center" }}>
+    <h1 style={{ marginBottom: "1rem" }}>Data couldn't be retrieved.</h1>
+    <p style={{ marginBottom: "1rem" }}>
+      This issue may be caused by the API provider. Please try refreshing the page or check back later.
+    </p>
+    <button 
+      onClick={() => window.location.reload()} 
+      style={{
+        padding: "0.2rem 0.5rem",
+        borderRadius: "5px",
+        border: "none",
+        backgroundColor: "#007BFF",
+        color: "#FFF",
+        cursor: "pointer"
+      }}
+    >
+      Refresh Page
+    </button>
+  </div>
+)}
+
+</>
+)}
       </div>
     </>
   );
