@@ -9,18 +9,17 @@ interface ICountryProps {
 
 
 const CountryCard: React.FC<ICountryProps> = ({ country }) => {
-  console.log(country);
 
   const [hover, setHover] = useState<Number>(1)
   const [link, setLink] = useState<String>("none")
 
 
-  const HoverFunc = () => {
+  const HoverFunc: () => void = () => {
     setHover(1.02)
     setLink("block")
   }
 
-  const RemoveHoverFunc = () => {
+  const RemoveHoverFunc: () => void = () => {
     setLink("none")
     setHover(1)
   }
@@ -37,10 +36,8 @@ const CountryCard: React.FC<ICountryProps> = ({ country }) => {
       </Card.Body>
 
 
-      <i className="bi bi-box-arrow-up-right" style={{ fontSize: "1.2rem", padding: "0.5rem", display: `${link}`}}
-
-
-      ></i>
+      <i className="bi bi-box-arrow-up-right" style={{ fontSize: "1.2rem", padding: "0.5rem", display: `${link}`, fontWeight: "bold"}}
+      />
 
 
     </Card>
