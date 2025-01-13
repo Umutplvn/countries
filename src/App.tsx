@@ -15,10 +15,19 @@ function App() {
 
 
     const filterCountryData: () => void = () => {
-        const data = countries?.filter((country) => country?.name?.common.toLowerCase().includes(`${search.toLowerCase()}`))
+        const searchLower = search.toLowerCase(); 
+        const data = countries?.filter((country) => {
+            const commonName = country?.name?.common?.toLowerCase();
+            const altSpellings = country?.altSpellings?.map(spelling => spelling.toLowerCase()) || [];
+            return commonName?.includes(searchLower) || altSpellings.some(spelling => spelling.includes(searchLower));
+        });
         setFilterCountries(data);
-    }
+    };
+    
+    
 
+    
+    
 
     const getCountries = async () => {
         setLoading(true)
