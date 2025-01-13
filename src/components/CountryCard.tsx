@@ -20,7 +20,7 @@ const [hover, setHover] = useState<Boolean>(false)
        >
       <Card.Body>
       <Card.Img style={{height:"10rem"}} variant="top" src={country.flags.png} />
-        <Card.Title >{country.name.official}</Card.Title>
+        <Card.Title style={{padding:"0.5rem 0 0 0", textAlign:"center", fontFamily:"sans-serif", fontWeight:"600"}} >{country.name.official}</Card.Title>
         <Button style={{position:"absolute", bottom:"0.5rem", left:"0.5rem", backgroundColor:"#7f7f7f", border:"none"}} >Details</Button>
       </Card.Body>
     </Card>
