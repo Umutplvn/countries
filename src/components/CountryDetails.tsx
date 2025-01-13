@@ -28,7 +28,7 @@ const CountryDetails: React.FC = () => {
     container: {
       maxWidth: '800px',
       width:"90%",
-      margin: '3rem auto 10rem',
+      margin: '6rem auto 10rem',
       padding: '2rem',
       borderRadius: '10px',
       boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 12px',

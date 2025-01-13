@@ -9,10 +9,14 @@ const Header = () => {
                 width: "100vw", 
                 borderBottom: "1.5px solid #e4e3e3", 
                 display: "flex", 
-                justifyContent: "center" 
+                justifyContent: "center" ,
+                position:"fixed",
+                top:"0",
+                backgroundColor:"white",
+                zIndex:2
             }}>
                 <div style={{
-                    padding: "0.3rem 0 0 2rem",
+                    padding: "0.8rem 0 0 2rem",
                     display: "flex",
                     cursor: "pointer",
                     maxWidth: "1200px",

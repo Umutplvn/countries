@@ -62,9 +62,10 @@ function App() {
         backgroundRepeat: "no-repeat",
         backgroundSize: "contain",
         maxWidth:"1200px",
-        margin:"auto",
+        margin:"2rem auto",
         scrollbarWidth: "none",
-        msOverflowStyle: "none"
+        msOverflowStyle: "none",
+    
 
     }}>
 
