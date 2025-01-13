@@ -21,31 +21,41 @@ function App() {
     setFilterCountries(data);
   };
 
-  const getCountries = async () => {
-    setLoading(true);
-    try {
-      const { data } = await axios<CountryType[]>("https://restcountries.com/v3.1/all");
-      setCountries(data);
-      setFilterCountries(data); 
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const api = axios.create({
+    baseURL: "https://restcountries.com/v3.1",
+    timeout: 20000, // 20 saniye zaman aşımı
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
-  useEffect(() => {
-    getCountries();
-    filterCountryData();
-  }, []);
+const getCountries = async () => {
+  setLoading(true);
+  try {
+    const { data } = await api.get<CountryType[]>("/all");
+    setCountries(data);
+    setFilterCountries(data); // İlk yüklemede filtrelenmiş veriyi de güncelleyin
+  } catch (error) {
+    console.error("API Hatası:", error);
+  } finally {
+    setLoading(false);
+  }
+};
+  
 
-  useEffect(() => {
-    filterCountryData();
-  }, [search, countries]); 
+useEffect(() => {
+  getCountries();
+}, []);
+
+useEffect(() => {
+  filterCountryData();
+}, [search, countries]);
 
   const onChangeFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value); 
   };
+
+
 
   return (
     <>
