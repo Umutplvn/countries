@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import bgImage from "../assets/world.svg"
 
 interface CountryType {
   name: {
@@ -36,6 +37,8 @@ const CountryDetails: React.FC = () => {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
+      backgroundColor:"white"
+     
     },
     flag: {
       width: '90%',
@@ -77,6 +80,10 @@ const CountryDetails: React.FC = () => {
   }
 
   return (
+    <div style={{ backgroundImage: `url(${bgImage})`, backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "contain"}}>
+
     <div style={styles.container}>
       <img src={country.flags.png} alt={`${country.name.common} flag`} style={styles.flag} />
       <h2 style={{fontWeight:"700", marginBottom:"3rem"}}>{country.name.official}</h2>
@@ -96,6 +103,7 @@ const CountryDetails: React.FC = () => {
           View Location
         </a>
       </p>
+    </div>
     </div>
   );
 };

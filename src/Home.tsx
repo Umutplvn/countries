@@ -60,7 +60,12 @@ function App() {
     <div style={{
         width: "100vw", height: "100vh", display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "2rem", padding: "3rem 2rem 5rem 2rem ", overflow: "scroll", backgroundImage: `url(${bgImage})`, backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        backgroundSize: "contain"
+        backgroundSize: "contain",
+        maxWidth:"1200px",
+        margin:"auto",
+        scrollbarWidth: "none",
+        msOverflowStyle: "none"
+
     }}>
 
         <div style={{ width: "100vw", paddingBottom: "3rem", display: "flex", justifyContent: "center" }}>
