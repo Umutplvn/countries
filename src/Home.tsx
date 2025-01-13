@@ -105,7 +105,7 @@ useEffect(() => {
   <div style={{ width: "100vw", textAlign: "center", height: "100vh", display: "flex", flexDirection: "column",alignItems: "center" }}>
     <h1 style={{ marginBottom: "1rem" }}>Data couldn't be retrieved.</h1>
     <p style={{ marginBottom: "1rem" }}>
-      This issue may be caused by the API provider. Please try refreshing the page or check back later.
+      This issue caused by the API provider. Please refresh the page.
     </p>
     <button 
       onClick={() => window.location.reload()} 
