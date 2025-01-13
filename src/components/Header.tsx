@@ -22,9 +22,9 @@ const Header = () => {
                     maxWidth: "1200px",
                     width: "100%",
                 }}>
-                    <img src={world} alt="" style={{ width: "30px", height: "30px" }} />
+                    <img src={world} alt="" style={{ width: "20px", height: "20px" }} />
                     <h1 style={{
-                        height: "30px",
+                        height: "20px",
                         display: "flex",
                         alignItems: "center",
                         marginLeft: "0.5rem",
