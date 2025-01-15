@@ -4,6 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+## Live at: https://geonavigator-info.netlify.app/
+
 In the project directory, you can run:
 
 ### `npm start`
