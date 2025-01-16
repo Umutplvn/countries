@@ -23,38 +23,37 @@ function App() {
 
   const api = axios.create({
     baseURL: "https://restcountries.com/v3.1",
-    timeout: 20000, 
+    timeout: 20000,
     headers: {
       "Content-Type": "application/json",
     },
   });
 
-const getCountries = async () => {
-  setLoading(true);
-  try {
-    const { data } = await api.get<CountryType[]>("/all");
-    setCountries(data);
-    setFilterCountries(data);
-  } catch (error) {
-    console.error("API Hatası:", error);
-  } finally {
-    setLoading(false);
-  }
-};
-  
-
-useEffect(() => {
-  getCountries();
-}, []);
-
-useEffect(() => {
-  filterCountryData();
-}, [search, countries]);
-
-  const onChangeFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value); 
+  const getCountries = async () => {
+    setLoading(true);
+    try {
+      const { data } = await api.get<CountryType[]>("/all");
+      setCountries(data);
+      setFilterCountries(data);
+    } catch (error) {
+      console.error("API Hatası:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
+
+  useEffect(() => {
+    getCountries();
+  }, []);
+
+  useEffect(() => {
+    filterCountryData();
+  }, [search, countries]);
+
+  const onChangeFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
 
 
   return (
@@ -89,42 +88,41 @@ useEffect(() => {
             onChange={onChangeFilter}
           />
         </div>
-
         {loading ? (
           <div style={{ width: "100vw", textAlign: "center", height: "100vh" }}>
             <img src={loadingGif} alt="" style={{ width: "50px" }} />
           </div>
         ) : (
 
-<>
-{filterCountries?.length > 0 ? (
-  filterCountries.map((country) => (
-    <CountryCard key={country?.name?.common} country={country} />
-  ))
-) : (
-  <div style={{ width: "100vw", textAlign: "center", height: "100vh", display: "flex", flexDirection: "column",alignItems: "center" }}>
-    <h1 style={{ marginBottom: "1rem" }}>Data couldn't be retrieved.</h1>
-    <p style={{ marginBottom: "1rem" }}>
-      This issue caused by the API provider. Please refresh the page.
-    </p>
-    <button 
-      onClick={() => window.location.reload()} 
-      style={{
-        padding: "0.2rem 0.5rem",
-        borderRadius: "5px",
-        border: "none",
-        backgroundColor: "#007BFF",
-        color: "#FFF",
-        cursor: "pointer"
-      }}
-    >
-      Refresh Page
-    </button>
-  </div>
-)}
+          <>
+            {filterCountries?.length > 0 ? (
+              filterCountries.map((country) => (
+                <CountryCard key={country?.name?.common} country={country} />
+              ))
+            ) : (
+              <div style={{ width: "100vw", textAlign: "center", height: "100vh", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <h1 style={{ marginBottom: "1rem" }}>Data couldn't be retrieved.</h1>
+                <p style={{ marginBottom: "1rem" }}>
+                  This issue caused by the API provider. Please refresh the page.
+                </p>
+                <button
+                  onClick={() => window.location.reload()}
+                  style={{
+                    padding: "0.2rem 0.5rem",
+                    borderRadius: "5px",
+                    border: "none",
+                    backgroundColor: "#007BFF",
+                    color: "#FFF",
+                    cursor: "pointer"
+                  }}
+                >
+                  Refresh Page
+                </button>
+              </div>
+            )}
 
-</>
-)}
+          </>
+        )}
       </div>
     </>
   );
